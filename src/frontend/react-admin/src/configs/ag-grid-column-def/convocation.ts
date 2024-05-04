@@ -1,0 +1,87 @@
+import { ColDef } from "ag-grid-community";
+
+export const CONVOCATION_COLUMNS_DEFS: ColDef[] = [
+  {
+    headerName: '#',
+    field: 'id',
+    filter: 'agNumberColumnFilter',
+    headerCheckboxSelection: true,
+    checkboxSelection: true,
+    showDisabledCheckboxes: true,
+    width: 100,
+  },
+  {
+    headerName: 'Libellé',
+    field: 'libelle',
+    filter: 'agTextColumnFilter',
+    checkboxSelection: false,
+    showDisabledCheckboxes: true,
+    width: 300,
+  },
+  {
+    headerName: 'Date Convocation',
+    field: 'dateConvocation',
+    filter: 'agDateColumnFilter',
+    checkboxSelection: false,
+    showDisabledCheckboxes: true,
+    width: 300,
+  },
+  {
+    headerName: 'Date RDV',
+    field: 'dateRdv',
+    filter: 'agTextColumnFilter',
+    checkboxSelection: false,
+    showDisabledCheckboxes: true,
+    width: 300,
+  },
+  {
+    headerName: 'Personnel',
+    field: 'personnel.firstName',
+    filter: 'agTextColumnFilter',
+    checkboxSelection: false,
+    showDisabledCheckboxes: true,
+    width: 300,
+  },
+  {
+    headerName: 'Fonction Personnel',
+    field: 'personnel.fonction',
+    filter: 'agTextColumnFilter',
+    checkboxSelection: false,
+    showDisabledCheckboxes: true,
+    width: 300,
+  },
+  {
+    headerName: 'Eleve',
+    field: 'eleve.firstName',
+    filter: 'agNumberColumnFilter',
+    checkboxSelection: false,
+    showDisabledCheckboxes: true,
+    width: 300,
+  },
+  {
+    headerName: 'Eleve Id',
+    field: 'eleveId',
+    filter: 'agTextColumnFilter',
+    checkboxSelection: false,
+    showDisabledCheckboxes: true,
+    width: 300,
+  },
+  {
+    headerName: 'classeId',
+    field: 'eleve.classeId',
+    filter: 'agTextColumnFilter',
+    checkboxSelection: false,
+    showDisabledCheckboxes: true,
+    width: 300,
+  },
+  {
+    headerName: 'Statut',
+    field: 'statut',
+    filter: 'agTextColumnFilter',
+    checkboxSelection: false,
+    showDisabledCheckboxes: true,
+    width: 300,
+  },
+ 
+ 
+];

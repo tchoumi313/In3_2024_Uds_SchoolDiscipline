@@ -2,15 +2,15 @@ package spring.learn.spring.model;
 
 import java.util.Date;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "professeurs")
-public class Professeur extends Personne {
+public class Professeur extends User {
     // @Id
     // @GeneratedValue(strategy = GenerationType.IDENTITY)
     // private long idProfesseur;
@@ -19,13 +19,7 @@ public class Professeur extends Personne {
     public Professeur() {
     }
 
-    public Professeur(long id_personne, String firstName, String lastName, Date dateNaissance, String password,
-            String lieuDeNaissance, String photo, String email, String sexe, long telephone, String role,
-            String username, String statut) {
-        super(id_personne, firstName, lastName, dateNaissance, password, lieuDeNaissance, photo, email, sexe, telephone,
-                role, username);
-        this.statut = statut;
-    }
+
 
     // public long getIdProfesseur() {
     //     return idProfesseur;
@@ -34,6 +28,42 @@ public class Professeur extends Personne {
     // public void setIdProfesseur(long idProfesseur) {
     //     this.idProfesseur = idProfesseur;
     // }
+
+    public Professeur(String statut) {
+        this.statut = statut;
+    }
+
+
+
+    public Professeur(Integer userId, String statut) {
+        super(userId);
+        this.statut = statut;
+    }
+
+
+
+    public Professeur(String password, String username, String userEmail, Date createdOn, String statut) {
+        super(password, username, userEmail, createdOn);
+        this.statut = statut;
+    }
+
+
+
+    public Professeur(String password, String username, String userEmail, String firstName, String lastName,
+            Date createdOn, String statut) {
+        super(password, username, userEmail, firstName, lastName, createdOn);
+        this.statut = statut;
+    }
+
+
+
+    public Professeur(String password, String username, String userEmail, String firstName, String lastName, Integer id,
+            String emailList, String statut) {
+        super(password, username, userEmail, firstName, lastName, id, emailList);
+        this.statut = statut;
+    }
+
+
 
     public String getStatut() {
         return statut;

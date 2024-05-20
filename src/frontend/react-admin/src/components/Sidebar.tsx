@@ -3,7 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 //import Logo from '../images/logo/logo.png';
 import Logo from '../pages/Authentication/SignIn/components/logo.png';
 import SidebarLinkGroup from './SidebarLinkGroup';
-
+  
 interface SidebarProps {
   sidebarOpen: boolean;
   setSidebarOpen: (arg: boolean) => void;

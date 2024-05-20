@@ -1,5 +1,40 @@
 # React + TypeScript + Vite
 
+# Vite-React Project
+
+## Introduction
+Ce projet utilise Vite comme outil de build et React pour la création d'une application web moderne. 
+
+## Prérequis
+Assurez-vous d'avoir les logiciels suivants installés sur votre machine :
+- Node.js (version 14 ou supérieure)
+- npm (version 6 ou supérieure)
+
+## Installation et Lancement de l'Application
+
+### Extraction du Projet
+Pour commencer, téléchargez et extrayez le fichier ZIP du projet dans le répertoire de votre choix.
+
+### Installation des Dépendances
+Ouvrez un terminal dans le répertoire du projet et exécutez la commande suivante pour installer les dépendances nécessaires :
+
+```bash
+# Utilisez npm
+cd src\frontend\SchoolDisciplin-React
+npm install
+npm install react-router-dom
+npm install clsx
+npm i react-pro-sidebar
+npm run dev
+
+# Ou utilisez yarn
+yarn install
+
+
+
+
+
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

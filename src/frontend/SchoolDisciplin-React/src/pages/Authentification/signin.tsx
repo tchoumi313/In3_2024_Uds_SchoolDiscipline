@@ -42,7 +42,7 @@ const SignIn: React.FC = () => {
         setErrors(newErrors);
 
         if (valid) {
-            navigate('/dashboard');
+            navigate('/home');
         }
     };
 

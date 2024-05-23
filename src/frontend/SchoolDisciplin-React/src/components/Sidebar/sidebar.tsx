@@ -6,7 +6,7 @@ import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 const SidebarMenu = () => {
     return (
         <div>
-            <Sidebar className='w-48  fixed top-0 left-0 bottom-0 h-screen sm:w-3/12 z-50'>
+            <Sidebar className='w-48  fixed top-0 left-0 bottom-0 h-full sm:w-3/12 z-50'>
                 <Menu className="bg-slate-900 h-screen text-left px-2 text-white z-50">
                     <span className=" mb-3 flex items-center justify-center">
                         <img src={logo} alt="logo" className="w-48 h-20 my-4" />

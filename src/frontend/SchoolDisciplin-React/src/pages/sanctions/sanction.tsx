@@ -11,7 +11,9 @@ import {
     faFilePdf,
     faSync,
     faSave,
-    faTimes
+    faTimes,
+    faEdit,
+    faTrash
 } from '@fortawesome/free-solid-svg-icons';
 
 ModuleRegistry.registerModules([ClientSideRowModelModule]);
@@ -25,9 +27,17 @@ const Sanction: React.FC = () => {
         { id: 5, libelleSanction: "Retard", libelleFaute: "Non-respect des horaires", date: "2023-05-05", eleve: "Fredie J" },
     ]);
 
+    const [selectedRow, setSelectedRow] = useState(null);
     const gridRef = useRef(null);
 
     const [colDefs, setColDefs] = useState([
+        {
+            headerCheckboxSelection: true,
+            checkboxSelection: true,
+            headerName: 'Index',
+            valueGetter: (params) => params.node.rowIndex + 1,
+            width: 80,
+        },
         { field: "libelleSanction", headerName: "Libellé Sanction", filter: 'agTextColumnFilter', sortable: true, flex: 1 },
         { field: "libelleFaute", headerName: "Libellé Faute", filter: 'agTextColumnFilter', sortable: true, flex: 2 },
         { field: "date", headerName: "Date", filter: 'agDateColumnFilter', sortable: true, flex: 1 },
@@ -40,6 +50,45 @@ const Sanction: React.FC = () => {
 
     const handleRefresh = () => {
         alert('Data refreshed');
+    };
+
+    const handleDelete = () => {
+        const selectedNodes = gridRef.current.api.getSelectedNodes();
+        const selectedData = selectedNodes.map(node => node.data);
+        const newData = rowData.filter(row => !selectedData.includes(row));
+        setRowData(newData);
+    };
+
+    const handleEdit = () => {
+        const selectedNodes = gridRef.current.api.getSelectedNodes();
+        if (selectedNodes.length === 1) {
+            const selectedData = selectedNodes[0].data;
+            setNewLibelleSanction(selectedData.libelleSanction);
+            setNewLibelleFaute(selectedData.libelleFaute);
+            setNewDate(selectedData.date);
+            setNewEleve(selectedData.eleve);
+            setSelectedRow(selectedData.id);
+            setShowModal(true);
+        } else {
+            alert('Please select a single row to edit');
+        }
+    };
+
+    const handleSaveNew = () => {
+        if (selectedRow) {
+            const newData = rowData.map(row => row.id === selectedRow ? {
+                ...row,
+                libelleSanction: newLibelleSanction,
+                libelleFaute: newLibelleFaute,
+                date: newDate,
+                eleve: newEleve
+            } : row);
+            setRowData(newData);
+        } else {
+            handleAdd({ libelleSanction: newLibelleSanction, libelleFaute: newLibelleFaute, date: newDate, eleve: newEleve });
+        }
+        setShowModal(false);
+        setSelectedRow(null);
     };
 
     const PdfDocument = ({ data }) => (
@@ -58,11 +107,6 @@ const Sanction: React.FC = () => {
     const [newLibelleFaute, setNewLibelleFaute] = useState('');
     const [newDate, setNewDate] = useState('');
     const [newEleve, setNewEleve] = useState('');
-
-    const handleSaveNew = () => {
-        handleAdd({ libelleSanction: newLibelleSanction, libelleFaute: newLibelleFaute, date: newDate, eleve: newEleve });
-        setShowModal(false);
-    };
 
     const defaultColDef = useMemo(() => {
         return {
@@ -85,12 +129,20 @@ const Sanction: React.FC = () => {
                         <FontAwesomeIcon icon={faSync} className='mr-2' />
                         Rafraîchir
                     </button>
+                    <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 flex items-center" onClick={handleDelete}>
+                        <FontAwesomeIcon icon={faTrash} className='mr-2' />
+                        Supprimer
+                    </button>
+                    <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 flex items-center" onClick={handleEdit}>
+                        <FontAwesomeIcon icon={faEdit} className='mr-2' />
+                        Modifier
+                    </button>
                     <PDFDownloadLink
                         document={<PdfDocument data={rowData} />}
                         fileName="sanctions_report.pdf"
                     >
                         {({ loading }) => (
-                            <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 flex items-center">
+                            <button className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 flex items-center">
                                 <FontAwesomeIcon icon={faFilePdf} className='mr-2' />
                                 {loading ? 'Loading document...' : 'Exporter en PDF'}
                             </button>
@@ -104,6 +156,7 @@ const Sanction: React.FC = () => {
                     rowData={rowData}
                     columnDefs={colDefs}
                     defaultColDef={defaultColDef}
+                    rowSelection="multiple"
                     pagination={true}
                     paginationPageSize={10}
                     domLayout='autoHeight'
@@ -112,7 +165,7 @@ const Sanction: React.FC = () => {
             {showModal && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                     <div className="bg-white p-4 rounded shadow-lg w-full max-w-md mx-2">
-                        <h2 className="text-lg font-bold mb-4">Ajouter Nouvelle Sanction</h2>
+                        <h2 className="text-lg font-bold mb-4">{selectedRow ? 'Modifier Sanction' : 'Ajouter Nouvelle Sanction'}</h2>
                         <input
                             className="border p-2 mb-2 w-full"
                             type="text"
@@ -122,7 +175,7 @@ const Sanction: React.FC = () => {
                         />
                         <input
                             className="border p-2 mb-2 w-full"
-                            type="text"
+                            type                            ="text"
                             placeholder="Libellé Faute"
                             value={newLibelleFaute}
                             onChange={(e) => setNewLibelleFaute(e.target.value)}
@@ -142,11 +195,11 @@ const Sanction: React.FC = () => {
                             onChange={(e) => setNewEleve(e.target.value)}
                         />
                         <div className="flex justify-end">
-                            <button className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 mr-2 flex items-center" onClick={() => setShowModal(false)}>
+                            <button className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 mr-2" onClick={() => setShowModal(false)}>
                                 <FontAwesomeIcon icon={faTimes} className='mr-2' />
                                 Annuler
                             </button>
-                            <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 flex items-center" onClick={handleSaveNew}>
+                            <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600" onClick={handleSaveNew}>
                                 <FontAwesomeIcon icon={faSave} className='mr-2' />
                                 Enregistrer
                             </button>

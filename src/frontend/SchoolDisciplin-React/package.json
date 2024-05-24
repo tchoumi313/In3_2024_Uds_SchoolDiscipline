@@ -10,6 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ag-grid-enterprise/all-modules": "^27.3.0",
+    "@react-pdf/renderer": "^3.4.4",
+    "ag-grid-community": "^31.3.2",
+    "ag-grid-react": "^31.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-pro-sidebar": "^1.1.0",

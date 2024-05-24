@@ -1,8 +1,8 @@
 import React from 'react';
-import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
 
-const Test: React.FC = () => {
+const SignUp: React.FC = () => {
 
     return (
         <div className="fixed top-0 left-0 bottom-0 w-3/12">
@@ -28,4 +28,4 @@ const Test: React.FC = () => {
     );
 };
 
-export default Test;
+export default SignUp;

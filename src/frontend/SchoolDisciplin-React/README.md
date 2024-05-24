@@ -25,6 +25,10 @@ npm install
 npm install react-router-dom
 npm install clsx
 npm i react-pro-sidebar
+npm install ag-grid-react 
+npm install --save ag-grid-community ag-grid-react @ag-grid-enterprise/all-modules
+
+npm install @react-pdf/renderer 
 npm run dev
 
 # Ou utilisez yarn

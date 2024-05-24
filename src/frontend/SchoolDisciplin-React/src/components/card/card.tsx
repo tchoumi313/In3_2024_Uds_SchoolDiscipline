@@ -35,7 +35,7 @@ const Card = () => {
       ];
     
       return (
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap text-gray-800 font-mono">
           {CARD.map((card) => (
             <div key={card.id} className="w-72 h-36 flex bg-slate-100 shadow-xl hover:border-b-4 hover:border-l-4 hover:border-r-4 hover:border-t-4 hover:border-x-sky-800 hover:border-y-sky-800 hover:opacity-80 transition-opacity hover:rounded-lg hover:transition-all m-2">
               <div className="w-20 px-3 bg-sky-700 items-center justify-center flex">

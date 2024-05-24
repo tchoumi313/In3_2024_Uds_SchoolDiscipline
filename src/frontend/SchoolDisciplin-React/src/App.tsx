@@ -6,30 +6,39 @@ import NotFound from './components/NotFound';
 import SidebarMenu from './components/Sidebar/sidebar';
 import Navbar from './components/Navbar/navbar';
 import DashBoard from './pages/dashboard/dashboard';
+import Test from './pages/test/test';
+import Sanction from './pages/sanctions/sanction';
+import Cours from './pages/cours/cours';
 
 function App() {
   const [signIn, setSignIn] = useState(false);
 
   return (
     <BrowserRouter>
-      {signIn && (
-        <div className="fixed left-0 top-0 bottom-0 w-48 z-40">
-          <SidebarMenu />
-        </div>
-      )}
-      <div className="relative">
+      <div className="flex h-screen bg-gray-100">
         {signIn && (
-          <div className="flex shadow justify-between p-4 ml-8 items-center fixed left-40 z-30 right-0 ">
-            <Navbar />
-          </div>
+          <aside className="fixed inset-y-0 left-0 bg-gray-800 border-r border-dashed border-white z-40">
+            <SidebarMenu />
+          </aside>
         )}
-        <div className="relative right-0 left-36 bottom-0 top-16 z-10 ">
-          <Routes>
-            <Route path="/" element={<SignIn setSignIn={setSignIn} />} />
-            <Route path="/dashboard" element={<DashBoard />} />
-            <Route path="*" element={<NotFound />} />
-            {/* Autres routes */}
-          </Routes>
+        <div className={`flex flex-col flex-1 ${signIn ? "ml-64" : ""}`}>
+          {signIn && (
+            <header className="fixed inset-x-0 top-0 h-16 bg-gray-800 border-b border-dashed border-white z-30">
+              <Navbar />
+            </header>
+          )}
+          <main className={`flex-1 ${signIn ? "pt-16" : ""} overflow-y-auto`}>
+            <div className="p-4">
+              <Routes>
+                <Route path="/" element={<SignIn setSignIn={setSignIn} />} />
+                <Route path="/dashboard" element={<DashBoard />} />
+                <Route path="/cours" element={<Cours />} />
+                <Route path="/sanctions" element={<Sanction />} />
+                <Route path="*" element={<NotFound />} />
+                {/* Other routes */}
+              </Routes>
+            </div>
+          </main>
         </div>
       </div>
     </BrowserRouter>

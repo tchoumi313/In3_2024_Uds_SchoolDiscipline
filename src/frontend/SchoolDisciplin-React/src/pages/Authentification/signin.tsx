@@ -53,7 +53,7 @@ function SignIn ({ setSignIn }) {
     };
 
     return (
-        <div className="fixed left-0 top-0 flex w-full h-full items-center justify-center bg-slate-200 dark:bg-gray-900">
+        <div className="fixed left-0 top-0 right-0 bottom-0 flex w-full h-full items-center justify-center bg-slate-200 dark:bg-gray-900">
             <div className="flex flex-col md:flex-row bg-white rounded-lg shadow-lg dark:bg-gray-800">
                 <div className="hidden md:flex md:w-1/2 items-center justify-center bg-gradient-to-r rounded-l-lg from-blue-500 to-purple-600 p-8">
                     <div className="text-center">

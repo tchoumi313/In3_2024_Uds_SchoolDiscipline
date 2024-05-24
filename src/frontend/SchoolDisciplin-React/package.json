@@ -11,10 +11,14 @@
   },
   "dependencies": {
     "@ag-grid-enterprise/all-modules": "^27.3.0",
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@react-pdf/renderer": "^3.4.4",
     "ag-grid-community": "^31.3.2",
     "ag-grid-react": "^31.3.2",
     "react": "^18.2.0",
+    "react-data-table-component": "^7.6.2",
     "react-dom": "^18.2.0",
     "react-pro-sidebar": "^1.1.0",
     "react-router-dom": "^6.23.1"

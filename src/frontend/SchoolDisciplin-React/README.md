@@ -27,8 +27,9 @@ npm install clsx
 npm i react-pro-sidebar
 npm install ag-grid-react 
 npm install --save ag-grid-community ag-grid-react @ag-grid-enterprise/all-modules
-
+npm i react-data-table-component
 npm install @react-pdf/renderer 
+npm install --save @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/fontawesome-svg-core
 npm run dev
 
 # Ou utilisez yarn

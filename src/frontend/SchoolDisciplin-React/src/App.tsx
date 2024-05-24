@@ -9,6 +9,8 @@ import DashBoard from './pages/dashboard/dashboard';
 import Test from './pages/test/test';
 import Sanction from './pages/sanctions/sanction';
 import Cours from './pages/cours/cours';
+import Eleve from './pages/eleves/eleves';
+import Convocation from './pages/convocations/convocations';
 
 function App() {
   const [signIn, setSignIn] = useState(false);
@@ -27,12 +29,14 @@ function App() {
               <Navbar />
             </header>
           )}
-          <main className={`flex-1 ${signIn ? "pt-16" : ""} overflow-y-auto`}>
-            <div className="p-4">
+          <main className={`fixed ml-16 top-16 right-0 bottom-0 left-48 flex-1 ${signIn ? "pt-16" : ""} `}>
+            <div className="p-4 relative">
               <Routes>
                 <Route path="/" element={<SignIn setSignIn={setSignIn} />} />
                 <Route path="/dashboard" element={<DashBoard />} />
+                <Route path="/eleves" element={<Eleve />} />
                 <Route path="/cours" element={<Cours />} />
+                <Route path="/convocations" element={<Convocation />} />
                 <Route path="/sanctions" element={<Sanction />} />
                 <Route path="*" element={<NotFound />} />
                 {/* Other routes */}

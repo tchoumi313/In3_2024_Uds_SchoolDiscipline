@@ -1,0 +1,23 @@
+.buttons{
+    width: 50%;
+}
+.buttons button{
+    
+    margin: 10px;
+}
+.new{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+}
+.export{
+    background-color: green;
+}
+/* .buttons span{
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+    padding: 10px;
+    color: blue;
+    margin: 10px;
+} */
